@@ -16,7 +16,10 @@
                 <Attribute Name="SNMP V3 User" Value="" />
                 <Attribute Name="SNMP V3 Password" Value="" />
                 <Attribute Name="SNMP V3 Private Key" Value="" />
+                <Attribute Name="Enable SNMP" Value="True" />
+                <Attribute Name="Disable SNMP" Value="False" />
                 <Attribute Name="CLI Connection Type" Value="Auto" />
+                <Attribute Name="CLI TCP Port" Value="0" />
                 <Attribute Name="User" Value="" />
                 <Attribute Name="Password" Value="" />
                 <Attribute Name="Enable Password" Value="" />
@@ -27,6 +30,7 @@
                 <Attribute Name="Backup Location" Value="" />
                 <Attribute Name="Sessions Concurrency Limit" Value="1" />
                 <Attribute Name="Power Management" Value="False" />
+                <Attribute Name="VRF Management Name" Value="" />
             </Attributes>
         </ResourceTemplate>
         <ResourceTemplate Name="Brocade IronWare Router" Model="Brocade IronWare Router" Driver="Generic Brocade IronWare Driver">
@@ -41,7 +45,10 @@
                 <Attribute Name="SNMP V3 User" Value="" />
                 <Attribute Name="SNMP V3 Password" Value="" />
                 <Attribute Name="SNMP V3 Private Key" Value="" />
+                <Attribute Name="Enable SNMP" Value="True" />
+                <Attribute Name="Disable SNMP" Value="False" />
                 <Attribute Name="CLI Connection Type" Value="Auto" />
+                <Attribute Name="CLI TCP Port" Value="0" />
                 <Attribute Name="User" Value="" />
                 <Attribute Name="Password" Value="" />
                 <Attribute Name="Enable Password" Value="" />
@@ -52,6 +59,7 @@
                 <Attribute Name="Backup Location" Value="" />
                 <Attribute Name="Sessions Concurrency Limit" Value="1" />
                 <Attribute Name="Power Management" Value="False" />
+                <Attribute Name="VRF Management Name" Value="" />
             </Attributes>
         </ResourceTemplate>
     </ResourceTemplates>

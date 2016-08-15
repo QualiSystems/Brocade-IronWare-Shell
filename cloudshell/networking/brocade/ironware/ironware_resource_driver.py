@@ -3,11 +3,11 @@
 
 import cloudshell.networking.brocade.ironware.ironware_configuration as driver_config
 
-from cloudshell.networking.brocade.autoload.brocade_snmp_autoload import BrocadeSnmpAutoload
+# from cloudshell.networking.brocade.autoload.brocade_snmp_autoload import BrocadeSnmpAutoload
 from cloudshell.networking.brocade.ironware.handler.brocade_ironware_operations import BrocadeIronWareOperations
 from cloudshell.networking.brocade.ironware.ironware_driver_bootstrap import IronWareDriverBootstrap
 
-from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
+from cloudshell.networking.networking_resource_driver_interface_v4 import NetworkingResourceDriverInterface
 # from cloudshell.networking.brocade.ironware.handler.brocade_ironware_connectivity_operations import \
 #     BrocadeIronwareConnectivityOperations
 
@@ -33,9 +33,9 @@ class IronWareResourceDriver(ResourceDriverInterface, NetworkingResourceDriverIn
     def operations(self):
         return BrocadeIronWareOperations()
 
-    @property
-    def autoload(self):
-        return BrocadeSnmpAutoload()
+    # @property
+    # def autoload(self):
+    #     return BrocadeSnmpAutoload()
 
     def initialize(self, context):
         pass
@@ -49,20 +49,29 @@ class IronWareResourceDriver(ResourceDriverInterface, NetworkingResourceDriverIn
     def shutdown(self, context):
         self.operations.shutdown()
 
-    def get_inventory(self, context):
-        return self.autoload.discover()
+    # def get_inventory(self, context):
+    #     return self.autoload.discover()
 
-    def save(self, context, folder_path, configuration_type):
+    def save(self, context, folder_path, configuration_type, vrf_management_name=None):
         self.operations.save_configuration(folder_path, configuration_type)
 
-    def send_custom_config_command(self, context, command):
-        return self.operations.send_config_command(command)
+    def send_custom_config_command(self, context, custom_command):
+        return self.operations.send_config_command(custom_command)
 
-    def send_custom_command(self, context, command):
-        return self.operations.send_command(command)
+    def send_custom_command(self, context, custom_command):
+        return self.operations.send_command(custom_command)
 
-    def update_firmware(self, context, remote_host, file_path):
+    def load_firmware(self, context, remote_host, file_path):
         return self.operations.update_firmware(remote_host, file_path)
 
-    def restore(self, context, path, config_type, restore_method):
-        return self.operations.restore_configuration(path, config_type, restore_method)
+    def restore(self, context, path, configuration_type, restore_method, vrf_management_name=None):
+        return self.operations.restore_configuration(path, configuration_type, restore_method)
+
+    def health_check(self, context):
+        pass
+
+    def orchestration_save(self, context, mode="shallow", custom_params=None):
+        pass
+
+    def orchestration_restore(self, context, saved_artifact_info, custom_params=None):
+        pass

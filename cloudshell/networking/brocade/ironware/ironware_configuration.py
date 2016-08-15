@@ -4,10 +4,10 @@
 import re
 from collections import OrderedDict
 
-# from cloudshell.cli.session.session_creator import SessionCreator
-# from cloudshell.cli.session.session_proxy import ReturnToPoolProxy
-# from cloudshell.cli.session.telnet_session import TelnetSession
-# from cloudshell.configuration.cloudshell_cli_configuration import CONNECTION_TYPE_TELNET
+from cloudshell.cli.session.session_creator import SessionCreator
+from cloudshell.cli.session.session_proxy import ReturnToPoolProxy
+from cloudshell.cli.session.telnet_session import TelnetSession
+from cloudshell.configuration.cloudshell_cli_configuration import CONNECTION_TYPE_TELNET
 from cloudshell.shell.core.context_utils import get_resource_address, get_attribute_by_name_wrapper
 from cloudshell.shell.core.dependency_injection.context_based_logger import get_logger_with_thread_id
 from cloudshell.snmp.quali_snmp_cached import QualiSnmpCached
@@ -25,8 +25,8 @@ SUPPORTED_OS = ["IronWare"]
 def enter_enable_mode(session):
     session.hardware_expect('enable', re_string=DEFAULT_PROMPT + '|' + ENABLE_PROMPT,
                             expect_map={'[Pp]assword': lambda session: session.send_line(
-                                # get_attribute_by_name_wrapper('Enable Password')())})
-                                get_decrypted_password_by_attribute_name_wrapper('Enable Password')())})
+                                get_attribute_by_name_wrapper('Enable Password')())})
+                                # get_decrypted_password_by_attribute_name_wrapper('Enable Password')())})
     result = session.hardware_expect('', re_string=r"{}|{}".format(DEFAULT_PROMPT, ENABLE_PROMPT))
     if not re.search(ENABLE_PROMPT, result):
         raise Exception('enter_enable_mode', 'Enable password is incorrect')
@@ -75,15 +75,15 @@ GET_LOGGER_FUNCTION = get_logger_with_thread_id
 ERROR_MAP = OrderedDict(
     {r'[Ee]rror\s+saving\s+configuration': 'Save configuration error',
      r'syntax\s+error': 'Syntax error',
-     r'[Uu]nknown\s+command': 'Uncnown command',
+     r'[Uu]nknown\s+command': 'Unknown command',
      r'[Ee]rror\s+.+': 'Error'})
 
 
-# """Definition for Telnet session"""
-# CONNECTION_MAP = OrderedDict()
-# telnet_session = SessionCreator(TelnetSession)
-# telnet_session.proxy = ReturnToPoolProxy
-# telnet_session.kwargs = {'username': get_attribute_by_name_wrapper('User'),
-#                          'password': get_attribute_by_name_wrapper('Password'),
-#                          'host': get_resource_address}
-# CONNECTION_MAP[CONNECTION_TYPE_TELNET] = telnet_session
+"""Definition for Telnet session"""
+CONNECTION_MAP = OrderedDict()
+telnet_session = SessionCreator(TelnetSession)
+telnet_session.proxy = ReturnToPoolProxy
+telnet_session.kwargs = {'username': get_attribute_by_name_wrapper('User'),
+                         'password': get_attribute_by_name_wrapper('Password'),
+                         'host': get_resource_address}
+CONNECTION_MAP[CONNECTION_TYPE_TELNET] = telnet_session

@@ -89,7 +89,7 @@ class BrocadeIronWareOperations(ConfigurationOperationsInterface, FirmwareOperat
         self.execute_command_map({'save': full_path})
         return "Config file {0} has been saved".format(full_path)
 
-    def update_firmware(self, remote_host, file_path, size_of_firmware=0):
+    def load_firmware(self, remote_host, file_path, size_of_firmware=0):
         self.logger.info("Upgrading firmware")
         if not remote_host or remote_host is '' or not file_path or file_path is '':
             raise Exception('IronWareHandler', "Remote host or filepath cannot be empty")
