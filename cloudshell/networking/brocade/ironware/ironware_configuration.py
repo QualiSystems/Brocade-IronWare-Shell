@@ -16,10 +16,11 @@ from cloudshell.shell.core.context_utils import get_decrypted_password_by_attrib
 
 DEFAULT_PROMPT = r'[>%#]\s*$|[>%#]\s*\n'
 ENABLE_PROMPT = r'#\s*$'
-CONFIG_MODE_PROMPT = r'.*#\s*$'
+CONFIG_MODE_PROMPT = r'config.*#\s*$'
 ENTER_CONFIG_MODE_PROMPT_COMMAND = 'configure terminal'
 EXIT_CONFIG_MODE_PROMPT_COMMAND = 'exit'
 SUPPORTED_OS = ["IronWare"]
+HE_MAX_LOOP_RETRIES = 0
 
 
 def enter_enable_mode(session):
@@ -45,7 +46,7 @@ def send_default_actions(session):
     out += session.hardware_expect('skip-page-display', ENABLE_PROMPT)
     out += session.hardware_expect(ENTER_CONFIG_MODE_PROMPT_COMMAND, CONFIG_MODE_PROMPT)
     out += session.hardware_expect('no logging console', CONFIG_MODE_PROMPT)
-    out += session.hardware_expect('exit', r"{}|{}".format(DEFAULT_PROMPT, ENABLE_PROMPT))
+    out += session.hardware_expect('exit', ENABLE_PROMPT)
     return out
 
 
