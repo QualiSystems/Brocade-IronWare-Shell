@@ -3,7 +3,7 @@ from cloudshell.shell.core.driver_bootstrap import DriverBootstrap
 import inject
 
 
-class IronWareDriverBootstrap(DriverBootstrap):
+class NetIronDriverBootstrap(DriverBootstrap):
     def bindings(self, binder):
         try:
             binder.bind_to_provider(SNMP_HANDLER, self._config.SNMP_HANDLER_FACTORY)

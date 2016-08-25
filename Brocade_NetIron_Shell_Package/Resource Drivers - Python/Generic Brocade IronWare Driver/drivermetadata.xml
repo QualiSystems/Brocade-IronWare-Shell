@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Driver Name="Generic Brocade IronWare Driver" Version="1.0.0"
-        MainClass="ironware_resource_driver.IronWareResourceDriver"
-        Description="Generic driver for all IronWare devices">
+<Driver Name="Generic Brocade NetIron Driver" Version="1.0.0"
+        MainClass="netiron_resource_driver.NetIronResourceDriver"
+        Description="Generic driver for all NetIron devices">
     <Layout>
         <Category Name="Hidden Commands">
             <Command Name="shutdown" DisplayName="Shutdown" Description="">

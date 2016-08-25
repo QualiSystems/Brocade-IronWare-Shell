@@ -255,7 +255,7 @@
             <AttachedAttributes/>
             <AttributeValues/>
             <Models>
-                <ResourceModel Name="Brocade IronWare Switch" Description="" SupportsConcurrentCommands="true">
+                <ResourceModel Name="Brocade NetIron Switch" Description="" SupportsConcurrentCommands="true">
                     <AttachedAttributes>
                         <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
@@ -372,7 +372,7 @@
                     </AttributeValues>
                     <ParentModels/>
                     <Drivers>
-                        <DriverName>Generic Brocade IronWare Driver</DriverName>
+                        <DriverName>Generic Brocade NetIron Driver</DriverName>
                     </Drivers>
                     <Scripts/>
                 </ResourceModel>
@@ -383,7 +383,7 @@
             <AttachedAttributes/>
             <AttributeValues/>
             <Models>
-                <ResourceModel Name="Brocade IronWare Router" Description="" SupportsConcurrentCommands="true">
+                <ResourceModel Name="Brocade NetIron Router" Description="" SupportsConcurrentCommands="true">
                     <AttachedAttributes>
                         <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
@@ -497,7 +497,7 @@
                     </AttributeValues>
                     <ParentModels/>
                     <Drivers>
-                        <DriverName>Generic Brocade IronWare Driver</DriverName>
+                        <DriverName>Generic Brocade NetIron Driver</DriverName>
                     </Drivers>
                     <Scripts/>
                 </ResourceModel>
@@ -522,8 +522,8 @@
                         <AttributeValue Name="Serial Number" Value=""/>
                     </AttributeValues>
                     <ParentModels>
-                        <ParentModelName>Brocade IronWare Switch</ParentModelName>
-                        <ParentModelName>Brocade IronWare Router</ParentModelName>
+                        <ParentModelName>Brocade NetIron Switch</ParentModelName>
+                        <ParentModelName>Brocade NetIron Router</ParentModelName>
                     </ParentModels>
                     <Drivers/>
                     <Scripts/>
@@ -721,8 +721,8 @@
                         <AttributeValue Name="Protocol Type" Value="Transparent"/>
                     </AttributeValues>
                     <ParentModels>
-                        <ParentModelName>Brocade IronWare Switch</ParentModelName>
-                        <ParentModelName>Brocade IronWare Router</ParentModelName>
+                        <ParentModelName>Brocade NetIron Switch</ParentModelName>
+                        <ParentModelName>Brocade NetIron Router</ParentModelName>
                     </ParentModels>
                     <Drivers/>
                     <Scripts/>

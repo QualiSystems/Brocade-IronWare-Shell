@@ -73,12 +73,6 @@ SNMP_HANDLER_FACTORY = create_snmp_handler
 
 GET_LOGGER_FUNCTION = get_logger_with_thread_id
 
-ERROR_MAP = OrderedDict(
-    {r'[Ee]rror\s+saving\s+configuration': 'Save configuration error',
-     r'syntax\s+error': 'Syntax error',
-     r'[Uu]nknown\s+command': 'Unknown command',
-     r'[Ee]rror\s+.+': 'Error'})
-
 
 """Definition for Telnet session"""
 CONNECTION_MAP = OrderedDict()

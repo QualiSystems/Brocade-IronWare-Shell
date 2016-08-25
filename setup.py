@@ -11,7 +11,7 @@ with open('test_requirements.txt') as f_tests:
     required_for_tests = f_tests.read().splitlines()
 
 setup(
-    name='cloudshell-networking-brocade-ironware',
+    name='cloudshell-networking-brocade-netiron',
     url='http://www.qualisystems.com/',
     author='QualiSystems',
     author_email='info@qualisystems.com',
@@ -19,6 +19,6 @@ setup(
     install_requires=required,
     tests_require=required_for_tests,
     version=version_from_file,
-    description='QualiSystems Brocade IronWare package',
+    description='QualiSystems Brocade NetIron package',
     include_package_data=True
 )
