@@ -130,7 +130,7 @@ class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
         if re.search(r"TFTP.*done", output):
             self.logger.debug("Reloading {} successfully".format(configuration_type))
             if _is_need_reload:
-                self.reload()
+                self.state_operations.reload()
             return 'Restore configuration completed.'
         else:
             matched = re.match(r"TFTP:.*", output)

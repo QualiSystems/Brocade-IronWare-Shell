@@ -19,7 +19,7 @@ ENABLE_PROMPT = r'#\s*$'
 CONFIG_MODE_PROMPT = r'config.*#\s*$'
 ENTER_CONFIG_MODE_PROMPT_COMMAND = 'configure terminal'
 EXIT_CONFIG_MODE_PROMPT_COMMAND = 'exit'
-SUPPORTED_OS = ["IronWare"]
+SUPPORTED_OS = ["Brocade.+MLX.+IronWare"]
 HE_MAX_LOOP_RETRIES = 0
 
 
