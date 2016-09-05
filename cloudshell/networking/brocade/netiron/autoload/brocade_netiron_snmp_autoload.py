@@ -26,11 +26,12 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
         :param config:
         :return:
         """
+        BrocadeSnmpAutoload.__init__(self,  snmp_handler, logger, config, cli_service, snmp_community)
         self._config = config
         self._snmp = snmp_handler
         self._logger = logger
-        self.enable_snmp = True
-        self.disable_snmp = False
+        # self._enable_snmp = True
+        # self._disable_snmp = False
         self.snmp_community = snmp_community
         if not self.snmp_community:
             self.snmp_community = get_attribute_by_name("SNMP Read Community") or "quali"

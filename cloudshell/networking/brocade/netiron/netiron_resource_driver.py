@@ -153,7 +153,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.configuration_operations.logger.info("{splitter}\nOrchestration save started".format(splitter=SPLITTER))
 
         response = self.configuration_operations.orchestration_save(mode=mode, custom_params=custom_params)
-        self.configuration_operations.logger.info("Orchestration save completed\n{}".format(splitter=SPLITTER))
+        self.configuration_operations.logger.info("Orchestration save completed\n{splitter}".format(splitter=SPLITTER))
         return response
 
     def orchestration_restore(self, context, saved_artifact_info, custom_params=None):
@@ -161,7 +161,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.configuration_operations.orchestration_restore(saved_artifact_info=saved_artifact_info,
                                                             custom_params=custom_params)
 
-        self.configuration_operations.logger.info("Orchestration restore completed\n{}".format(splitter=SPLITTER))
+        self.configuration_operations.logger.info("Orchestration restore completed\n{splitter}".format(splitter=SPLITTER))
 
     def health_check(self, context):
         """ Performs device health check """
