@@ -8,14 +8,10 @@ from cloudshell.networking.brocade.brocade_firmware_operations import BrocadeFir
 from cloudshell.networking.brocade.brocade_state_operations import BrocadeStateOperations as StateOperations
 from cloudshell.networking.brocade.brocade_send_command_operations import BrocadeSendCommandOperations as SendCommandOperations
 from cloudshell.networking.brocade.netiron.handler.brocade_netiron_configuration_operations import BrocadeNetIronConfigurationOperations as ConfigurationOperations
-# from cloudshell.networking.generic_bootstrap import NetworkingGenericBootstrap as Bootstrap
-from cloudshell.networking.brocade.netiron.netiron_driver_bootstrap import NetIronDriverBootstrap as Bootstrap
 from cloudshell.networking.brocade.brocade_connectivity_operations import BrocadeConnectivityOperations as ConnectivityOperations
-
 from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
-
-
 from cloudshell.shell.core.context_utils import ContextFromArgsMeta
+from cloudshell.shell.core.driver_bootstrap import DriverBootstrap as Bootstrap
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 
 SPLITTER = "-"*60
@@ -153,7 +149,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.configuration_operations.logger.info("{splitter}\nOrchestration save started".format(splitter=SPLITTER))
 
         response = self.configuration_operations.orchestration_save(mode=mode, custom_params=custom_params)
-        self.configuration_operations.logger.info("Orchestration save completed\n{}".format(splitter=SPLITTER))
+        self.configuration_operations.logger.info("Orchestration save completed\n{splitter}".format(splitter=SPLITTER))
         return response
 
     def orchestration_restore(self, context, saved_artifact_info, custom_params=None):
@@ -161,7 +157,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.configuration_operations.orchestration_restore(saved_artifact_info=saved_artifact_info,
                                                             custom_params=custom_params)
 
-        self.configuration_operations.logger.info("Orchestration restore completed\n{}".format(splitter=SPLITTER))
+        self.configuration_operations.logger.info("Orchestration restore completed\n{splitter}".format(splitter=SPLITTER))
 
     def health_check(self, context):
         """ Performs device health check """

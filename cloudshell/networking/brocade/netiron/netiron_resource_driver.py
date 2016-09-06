@@ -8,14 +8,10 @@ from cloudshell.networking.brocade.brocade_firmware_operations import BrocadeFir
 from cloudshell.networking.brocade.brocade_state_operations import BrocadeStateOperations as StateOperations
 from cloudshell.networking.brocade.brocade_send_command_operations import BrocadeSendCommandOperations as SendCommandOperations
 from cloudshell.networking.brocade.netiron.handler.brocade_netiron_configuration_operations import BrocadeNetIronConfigurationOperations as ConfigurationOperations
-# from cloudshell.networking.generic_bootstrap import NetworkingGenericBootstrap as Bootstrap
-from cloudshell.networking.brocade.netiron.netiron_driver_bootstrap import NetIronDriverBootstrap as Bootstrap
 from cloudshell.networking.brocade.brocade_connectivity_operations import BrocadeConnectivityOperations as ConnectivityOperations
-
 from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
-
-
 from cloudshell.shell.core.context_utils import ContextFromArgsMeta
+from cloudshell.shell.core.driver_bootstrap import DriverBootstrap as Bootstrap
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 
 SPLITTER = "-"*60
