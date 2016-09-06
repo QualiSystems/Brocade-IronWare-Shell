@@ -18,7 +18,7 @@
                 <Rule Name="Configuration"/>
             </Rules>
         </AttributeInfo>
-        <AttributeInfo Name="Power Management" Description="Used by the power management orchestration, if enabled, to determine whether to automatically manage the device power status. Enabled by default." Type="Boolean" DefaultValue="False" IsReadOnly="false">
+        <AttributeInfo Name="Power Management" Description="Used by the power management orchestration, if enabled, to determine whether to automatically manage the device power status. Enabled by default." Type="Boolean" DefaultValue="True" IsReadOnly="false">
             <Rules>
                 <Rule Name="Configuration"/>
             </Rules>
@@ -64,7 +64,7 @@
                 <Rule Name="Configuration"/>
             </Rules>
         </AttributeInfo>
-        <AttributeInfo Name="Backup Type" Description="Supported protocols for saving and restoring of configuration and firmware files. Possible values are &quot;File System&quot;, &quot;FTP&quot; and &quot;TFTP&quot;. Default value is &quot;File System&quot;." Type="String" DefaultValue="" IsReadOnly="false">
+        <AttributeInfo Name="Backup Type" Description="Supported protocols for saving and restoring of configuration and firmware files. Possible values are &quot;File System&quot;, &quot;FTP&quot; and &quot;TFTP&quot;. Default value is &quot;File System&quot;." Type="String" DefaultValue="File System" IsReadOnly="false">
             <Rules>
                 <Rule Name="Configuration"/>
             </Rules>

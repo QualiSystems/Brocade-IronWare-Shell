@@ -62,7 +62,13 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         pass
 
     def ApplyConnectivityChanges(self, context, request):
-        return self.connectivity_operations.apply_connectivity_changes(request)
+        self.connectivity_operations.logger.debug("Start applying connectivity changes, request is: {0}"
+                                                  .format(str(request)))
+        response = self.connectivity_operations.apply_connectivity_changes(request)
+
+        self.connectivity_operations.logger.debug("Finished applying connectivity changes, responce is: {0}"
+                                                  .format(str(response)))
+        return response
 
     def get_inventory(self, context):
         """ Get device structure with all standard attributes
@@ -71,6 +77,30 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         """
 
         return self.autoload.discover()
+
+    def run_custom_command(self, context, custom_command):
+        """ Send custom command
+
+        :param custom_command: command
+        :return: command execution output
+        """
+
+        self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Command' with parameters:\n"
+                                                 "command = {command}\n{splitter}".format(splitter=SPLITTER,
+                                                                                          command=custom_command))
+        return self.send_command_operations.send_command(custom_command)
+
+    def run_custom_config_command(self, context, custom_command):
+        """ Send custom command in configuration mode
+
+        :param custom_command: command
+        :return: command execution output
+        """
+
+        self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Config Command' with parameters:"
+                                                 "\ncommand = {command}\n{splitter}".format(splitter=SPLITTER,
+                                                                                            command=custom_command))
+        return self.send_command_operations.send_config_command(custom_command)
 
     def send_custom_command(self, context, custom_command):
         """ Send custom command
@@ -96,6 +126,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                                             command=custom_command))
         return self.send_command_operations.send_config_command(custom_command)
 
+
     def load_firmware(self, context, path, vrf_management_name=None):
         """Upload and updates firmware on the resource
         :param path: full path to firmware file, i.e.tftp://10.10.10.1/firmware.bin
@@ -119,6 +150,9 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         :return saved configuration file name
         """
 
+        if not configuration_type:
+            configuration_type = "running"
+
         self.configuration_operations.logger.info("{splitter}\nRun method 'Save' with parameters:\n"
                                                   "configuration_type = {configuration_type},\n"
                                                   "folder_path = {folder_path},\n"
@@ -127,7 +161,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                       configuration_type=configuration_type))
         return self.configuration_operations.save(configuration_type, folder_path)
 
-    def restore(self, context, path, configuration_type='running', restore_method='override', vrf_management_name=None):
+    def restore(self, context, path, configuration_type, restore_method, vrf_management_name=None):
         """ Restore selected file to the provided destination
 
         :param path: source config file
@@ -135,6 +169,13 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         :param restore_method: append or override methods
         :param vrf_management_name: VRF management Name
         """
+
+        if not configuration_type:
+            configuration_type = 'running'
+
+        if not restore_method:
+            restore_method = 'override'
+
         self.configuration_operations.logger.info("{splitter}\nRun method 'Restore' with parameters:"
                                                   "path = {path},\n"
                                                   "config_type = {config_type},\n"
@@ -145,7 +186,11 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                       restore_method=restore_method))
         return self.configuration_operations.restore(path, configuration_type, restore_method)
 
-    def orchestration_save(self, context, mode="shallow", custom_params=None):
+    def orchestration_save(self, context, mode, custom_params=None):
+
+        if not mode:
+            mode = 'shallow'
+
         self.configuration_operations.logger.info("{splitter}\nOrchestration save started".format(splitter=SPLITTER))
 
         response = self.configuration_operations.orchestration_save(mode=mode, custom_params=custom_params)

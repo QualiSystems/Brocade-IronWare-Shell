@@ -10,7 +10,7 @@ from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
 class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
-    def save_configuration(self, source_filename, destination_host, vrf=None):
+    def save(self, source_filename, destination_host, vrf=None):
         """ Save device configuration to remote server
 
         :param destination_host: Full path to folder on remote server
@@ -67,7 +67,7 @@ class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
                 error = "Error during copy configuration"
             raise Exception(self.__class__.__name__, "Save configuration failed with error: {}".format(error))
 
-    def restore_configuration(self, path, configuration_type, restore_method='override', vrf=None):
+    def restore(self, path, configuration_type, restore_method='override', vrf=None):
         """ Restore configuration on device from remote server
 
         :param path: Full path to configuration file on remote server
