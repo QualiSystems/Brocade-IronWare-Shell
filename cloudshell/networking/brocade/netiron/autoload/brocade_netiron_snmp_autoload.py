@@ -30,8 +30,6 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
         self._config = config
         self._snmp = snmp_handler
         self._logger = logger
-        # self._enable_snmp = True
-        # self._disable_snmp = False
         self.snmp_community = snmp_community
         if not self.snmp_community:
             self.snmp_community = get_attribute_by_name("SNMP Read Community") or "quali"
@@ -559,10 +557,6 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
                   'location': self.snmp.get_property('SNMPv2-MIB', 'sysLocation', 0),
                   'contact': self.snmp.get_property('SNMPv2-MIB', 'sysContact', 0),
                   'version': ''}
-
-        # match_model = re.search(r"(?<=:sn)\S+", self.snmp.get_property('SNMPv2-MIB', 'sysObjectID', 0))
-        # if match_model:
-        #     result['model'] = match_model.group()
 
         match_version = re.search(r'Version\s+(?P<software_version>\S+)\S*\s+',
                                   self.snmp.get_property('SNMPv2-MIB', 'sysDescr', 0))

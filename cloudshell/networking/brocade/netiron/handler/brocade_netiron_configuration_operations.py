@@ -98,11 +98,11 @@ class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
         else:
             file_path = connection_dict.get(UrlParser.PATH) + "/" + connection_dict.get(UrlParser.FILENAME)
 
-        if configuration_type == "startup-config" and restore_method == "append":
+        if configuration_type == "startup-config" and restore_method.lower() == "append":
             raise Exception(self.__class__.__name__,
                             "Device doesn't support restoring '{0}' configuration type with '{1}' method"
                             .format(configuration_type, restore_method))
-        elif configuration_type == "running-config" and restore_method == "override":
+        elif configuration_type == "running-config" and restore_method.lower() == "override":
             if self.session.session_type.lower() == 'console':
                 restore_command = "copy {scheme} {config} {host} {file_path} overwrite"\
                     .format(scheme=connection_dict.get(UrlParser.SCHEME),

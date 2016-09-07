@@ -126,7 +126,6 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                                             command=custom_command))
         return self.send_command_operations.send_config_command(custom_command)
 
-
     def load_firmware(self, context, path, vrf_management_name=None):
         """Upload and updates firmware on the resource
         :param path: full path to firmware file, i.e.tftp://10.10.10.1/firmware.bin
