@@ -88,7 +88,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Command' with parameters:\n"
                                                  "command = {command}\n{splitter}".format(splitter=SPLITTER,
                                                                                           command=custom_command))
-        return self.send_command_operations.send_command(custom_command)
+        return self.send_command_operations.run_custom_command(custom_command)
 
     def run_custom_config_command(self, context, custom_command):
         """ Send custom command in configuration mode
@@ -100,7 +100,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Config Command' with parameters:"
                                                  "\ncommand = {command}\n{splitter}".format(splitter=SPLITTER,
                                                                                             command=custom_command))
-        return self.send_command_operations.send_config_command(custom_command)
+        return self.send_command_operations.run_custom_config_command(custom_command)
 
     def send_custom_command(self, context, custom_command):
         """ Send custom command
@@ -112,7 +112,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Command' with parameters:\n"
                                                  "command = {command}\n{splitter}".format(splitter=SPLITTER,
                                                                                           command=custom_command))
-        return self.send_command_operations.send_command(custom_command)
+        return self.send_command_operations.run_custom_command(custom_command)
 
     def send_custom_config_command(self, context, custom_command):
         """ Send custom command in configuration mode
@@ -124,7 +124,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         self.send_command_operations.logger.info("{splitter}\nRun method 'Send Custom Config Command' with parameters:"
                                                  "\ncommand = {command}\n{splitter}".format(splitter=SPLITTER,
                                                                                             command=custom_command))
-        return self.send_command_operations.send_config_command(custom_command)
+        return self.send_command_operations.run_custom_config_command(custom_command)
 
     def load_firmware(self, context, path, vrf_management_name=None):
         """Upload and updates firmware on the resource
