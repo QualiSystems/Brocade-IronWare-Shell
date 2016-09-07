@@ -360,10 +360,10 @@
                         <AttributeValue Name="OS Version" Value=""/>
                         <AttributeValue Name="Vendor" Value=""/>
                         <AttributeValue Name="Location" Value=""/>
-                        <AttributeValue Name="Backup Location" Value="File System"/>
+                        <AttributeValue Name="Backup Location" Value=""/>
                         <AttributeValue Name="Backup User" Value=""/>
                         <AttributeValue Name="Backup Password" Value="3M3u7nkDzxWb0aJ/IZYeWw=="/>
-                        <AttributeValue Name="Backup Type" Value=""/>
+                        <AttributeValue Name="Backup Type" Value="File System"/>
                         <AttributeValue Name="Model" Value=""/>
                         <AttributeValue Name="SNMP Read Community" Value=""/>
                         <AttributeValue Name="SNMP V3 Password" Value=""/>
