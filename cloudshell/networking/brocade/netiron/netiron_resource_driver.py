@@ -141,7 +141,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                  vrf_management_name=vrf_management_name))
         return self.firmware_operations.load_firmware(path, vrf_management_name)
 
-    def save(self, context, configuration_type, folder_path, vrf_management_name=None):
+    def save(self, context, folder_path, configuration_type="running", vrf_management_name=None):
         """Save selected file to the provided destination
         :param configuration_type: source file, which will be saved
         :param folder_path: destination path where file will be saved
@@ -160,7 +160,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                       configuration_type=configuration_type))
         return self.configuration_operations.save(configuration_type, folder_path)
 
-    def restore(self, context, path, configuration_type, restore_method, vrf_management_name=None):
+    def restore(self, context, path, configuration_type="running", restore_method="override", vrf_management_name=None):
         """ Restore selected file to the provided destination
 
         :param path: source config file
@@ -185,10 +185,10 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                                       restore_method=restore_method))
         return self.configuration_operations.restore(path, configuration_type, restore_method)
 
-    def orchestration_save(self, context, mode, custom_params=None):
+    def orchestration_save(self, context, mode="shallow", custom_params=None):
 
         if not mode:
-            mode = 'shallow'
+            mode = "shallow"
 
         self.configuration_operations.logger.info("{splitter}\nOrchestration save started".format(splitter=SPLITTER))
 

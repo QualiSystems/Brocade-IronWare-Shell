@@ -341,7 +341,7 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
             chassis_object = Chassis(relative_path=relative_path, **chassis_details_map)
             self._add_resource(chassis_object)
             self.logger.info('Added ' + self.entity_table[chassis]['entPhysicalDescr'] + ' Chass')
-        self.logger.info('Finished Loading Modules')
+        self.logger.info('Finished Loading Chassis')
 
     def _get_module_attributes(self):
         """Set attributes for all discovered modules
@@ -550,7 +550,7 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
 
         """
 
-        self.logger.info('Load Firewall Attributes:')
+        self.logger.info('Load Device Attributes:')
         result = {'system_name': self.snmp.get_property('SNMPv2-MIB', 'sysName', 0),
                   'vendor': 'Brocade',
                   'model': self._get_device_model(),
@@ -565,7 +565,7 @@ class NetIronSnmpAutoload(BrocadeSnmpAutoload):
 
         root = NetworkingStandardRootAttributes(**result)
         self.attributes.extend(root.get_autoload_resource_attributes())
-        self.logger.info('Load Firewall Attributes completed.')
+        self.logger.info('Load Device Attributes completed.')
 
     def _get_adjacent(self, interface_id):
         """Get connected device interface and device name to the specified port id, using cdp or lldp protocols
