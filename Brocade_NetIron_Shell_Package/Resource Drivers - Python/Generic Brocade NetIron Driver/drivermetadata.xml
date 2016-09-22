@@ -75,7 +75,7 @@
                 <Parameter Name="configuration_type" Type="String" Mandatory="False" DefaultValue=""
                            DisplayName="Configuration Type"
                            Description="The configuration type to restore. Possible values are StartUp and Running. If kept empty the configuration type that will be restored is Running."/>
-                <Parameter Name="restore_method" Type="String" Mandatory="True" DefaultValue=""
+                <Parameter Name="restore_method" Type="String" Mandatory="False" DefaultValue=""
                            DisplayName="Restore Method"
                            Description="The restore method to use when restoring the configuration file. Possible Values are Append and Override. If kept empty the restore method will be Override."/>
                 <Parameter Name="vrf_management_name" Type="String" Mandatory="False" DisplayName="VRF Management Name" DefaultValue=""
