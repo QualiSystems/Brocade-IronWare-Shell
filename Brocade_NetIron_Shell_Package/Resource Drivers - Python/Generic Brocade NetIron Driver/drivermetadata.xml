@@ -4,18 +4,6 @@
         Description="Generic driver for all NetIron devices">
     <Layout>
         <Category Name="Hidden Commands">
-            <Command Name="autoload" DisplayName="autoload" Description="">
-            </Command>
-            <Command Name="configuration_operations" DisplayName="configuration_operations" Description="">
-            </Command>
-            <Command Name="connectivity_operations" DisplayName="connectivity_operations" Description="">
-            </Command>
-            <Command Name="firmware_operations" DisplayName="firmware_operations" Description="">
-            </Command>
-            <Command Name="send_command_operations" DisplayName="send_command_operations" Description="">
-            </Command>
-            <Command Name="state_operations" DisplayName="state_operations" Description="">
-            </Command>
             <Command Name="shutdown" DisplayName="Shutdown" Description="">
             </Command>
             <Command Name="run_custom_config_command" DisplayName="Run Custom Config Command" Tags="">
