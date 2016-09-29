@@ -160,7 +160,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
                                                     "{splitter}".format(splitter=SPLITTER,
                                                                         folder_path=folder_path,
                                                                         configuration_type=configuration_type))
-        return self.__configuration_operations.save(configuration_type, folder_path)
+        return self.__configuration_operations.save(folder_path=folder_path, configuration_type=configuration_type)
 
     def restore(self, context, path, configuration_type="running", restore_method="override", vrf_management_name=None):
         """ Restore selected file to the provided destination

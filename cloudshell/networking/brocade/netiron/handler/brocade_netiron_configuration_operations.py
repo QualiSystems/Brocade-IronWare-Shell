@@ -6,48 +6,44 @@ import time
 
 from cloudshell.networking.networking_utils import UrlParser
 from cloudshell.networking.brocade.brocade_configuration_operations import BrocadeConfigurationOperations
-from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
 class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
-    def save(self, source_filename, destination_host, vrf=None):
+    def save(self, folder_path=None, configuration_type="running", vrf_management_name=None):
         """ Save device configuration to remote server
 
-        :param destination_host: Full path to folder on remote server
-        :param source_filename: Type of configuration to save. Supports running and startup configuration
+        :param folder_path: Full path to folder on remote server
+        :param configuration_type: Type of configuration to save. Supports running and startup configuration
 
         :return Successful message or Exception
         """
 
-        if not source_filename:
-            source_filename = "running-config"
-        elif "-config" not in source_filename:
-            source_filename = source_filename.lower() + "-config"
+        if not configuration_type:
+            configuration_type = "running-config"
+        elif "-config" not in configuration_type:
+            configuration_type = configuration_type.lower() + "-config"
 
-        if source_filename not in ["running-config", "startup-config"]:
+        if configuration_type not in ["running-config", "startup-config"]:
             raise Exception(self.__class__.__name__,
-                            "Device doesn't support saving '{}' configuration type".format(source_filename))
+                            "Device doesn't support saving '{}' configuration type".format(configuration_type))
 
-        if not destination_host:
-            destination_host = get_attribute_by_name('Backup Location')
-            if not destination_host:
-                raise Exception(self.__class__.__name__, "Backup location or path can not be empty")
+        folder_path = self.get_path(folder_path)
 
-        if not destination_host.endswith("/"):
-            destination_host += "/"
+        if not folder_path.endswith("/"):
+            folder_path += "/"
 
         file_name = "{0}-{1}-{2}".format(self.resource_name,
-                                         source_filename,
+                                         configuration_type,
                                          time.strftime("%d%m%y-%H%M%S", time.localtime()))
 
-        connection_dict = UrlParser.parse_url(destination_host)
+        connection_dict = UrlParser.parse_url(folder_path)
 
         if connection_dict.get(UrlParser.PATH).endswith("/"):
             file_path = connection_dict.get(UrlParser.PATH) + file_name
         else:
             file_path = connection_dict.get(UrlParser.PATH) + "/" + file_name
 
-        save_command = "copy {config} {scheme} {host} {file_path}".format(config=source_filename,
+        save_command = "copy {config} {scheme} {host} {file_path}".format(config=configuration_type,
                                                                           scheme=connection_dict.get(UrlParser.SCHEME),
                                                                           host=connection_dict.get(UrlParser.HOSTNAME),
                                                                           file_path=file_path)
@@ -67,13 +63,13 @@ class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
                 error = "Error during copy configuration"
             raise Exception(self.__class__.__name__, "Save configuration failed with error: {}".format(error))
 
-    def restore(self, path, configuration_type, restore_method='override', vrf=None):
+    def restore(self, path, configuration_type, restore_method='override', vrf_management_name=None):
         """ Restore configuration on device from remote server
 
         :param path: Full path to configuration file on remote server
         :param configuration_type: Type of configuration to restore. supports running and startup configuration
         :param restore_method: Type of restore method. Supports append and override. By default is override
-        :param vrf: Not supported for Brocade Devices
+        :param vrf_management_name: Not supported for Brocade Devices
 
         :return Successful message or Exception
         """
