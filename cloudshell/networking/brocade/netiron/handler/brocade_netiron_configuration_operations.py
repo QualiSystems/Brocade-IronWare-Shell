@@ -54,7 +54,7 @@ class BrocadeNetIronConfigurationOperations(BrocadeConfigurationOperations):
                                                expected_str=self._default_prompt)
 
         if re.search(r"TFTP.*done", output):
-            return "{0}".format(file_path)
+            return "{0}".format(file_name)
         else:
             matched = re.match(r"TFTP:.*", output)
             if matched:

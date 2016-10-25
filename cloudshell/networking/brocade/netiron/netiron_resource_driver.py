@@ -175,7 +175,7 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         if not restore_method:
             restore_method = 'override'
 
-        self._configuration_operations.logger.info("{splitter}\nRun method 'Restore' with parameters:"
+        self._configuration_operations.logger.info("{splitter}\nRun method 'Restore' with parameters:\n"
                                                    "path = {path},\n"
                                                    "config_type = {config_type},\n"
                                                    "restore_method = {restore_method}\n"
@@ -190,20 +190,29 @@ class BrocadeNetIronResourceDriver(ResourceDriverInterface, NetworkingResourceDr
         if not mode:
             mode = 'shallow'
 
-        self._configuration_operations.logger.info("{splitter}\nOrchestration save started".format(splitter=SPLITTER))
+        self._configuration_operations.logger.info("{splitter}\nRun method 'Orchestration save' with parameters:\n"
+                                                   "mode = {mode},\n"
+                                                   "custom_params = {custom_params}\n"
+                                                   "{splitter}".format(splitter=SPLITTER,
+                                                                       mode=mode,
+                                                                       custom_params=custom_params))
 
         response = self._configuration_operations.orchestration_save(mode=mode, custom_params=custom_params)
         self._configuration_operations.logger.info("Orchestration save completed\n{splitter}".format(splitter=SPLITTER))
         return response
 
     def orchestration_restore(self, context, saved_artifact_info, custom_params=None):
-        self._configuration_operations.logger.info(
-            "{splitter}\nOrchestration restore started".format(splitter=SPLITTER))
+        self._configuration_operations.logger.info("{splitter}\nRun method 'Orchestration restore'  with parameters:\n"
+                                                   "saved_artifact_info = {saved_artifact_info},\n"
+                                                   "custom_params = {custom_params}\n"
+                                                   "{splitter}".format(splitter=SPLITTER,
+                                                                       saved_artifact_info=saved_artifact_info,
+                                                                       custom_params=custom_params))
         self._configuration_operations.orchestration_restore(saved_artifact_info=saved_artifact_info,
                                                              custom_params=custom_params)
 
-        self._configuration_operations.logger.info(
-            "Orchestration restore completed\n{splitter}".format(splitter=SPLITTER))
+        self._configuration_operations.logger.info("Orchestration restore completed\n{splitter}"
+                                                   .format(splitter=SPLITTER))
 
     def health_check(self, context):
         """ Performs device health check """
